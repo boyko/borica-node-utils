@@ -64,62 +64,22 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#nodejs-functions-for-epaybg" id="nodejs-functions-for-epaybg" style="color: inherit; text-decoration: none;">
-					<h1>Node.js functions for epay.bg</h1>
+				<a href="#borica-nodejs-utils" id="borica-nodejs-utils" style="color: inherit; text-decoration: none;">
+					<h1>Borica nodejs utils</h1>
 				</a>
-				<p><a href="https://travis-ci.org/boyko/epaybg-node-utils"><img src="https://travis-ci.org/boyko/epaybg-node-utils.svg?branch=master" alt="Build Status"></a></p>
-				<p>An <em>unofficial</em> library for parsing payment status messages and for creating payment requests with <a href="https://epay.bg">epay.bg</a>.
-				See their <a href="https://www.epay.bg/img/x/readme_web.pdf">API documentation</a> for details.</p>
+				<p>An <em>unofficial</em> library for communication with the <a href="https://borica.bg">BORICA</a> payment API inspired by the <a href="https://www.npmjs.com/package/borica">borica</a> package and written in Typescript.</p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
 				<pre><code class="language-sh">// npm
-npm install epaybg-node-utils --save
+npm install borica-node-utils --save
 
 // yarn
-yarn add epaybg-node-utils</code></pre>
-				<a href="#create-a-payment-request" id="create-a-payment-request" style="color: inherit; text-decoration: none;">
-					<h2>Create a payment request</h2>
+yarn add borica-node-utils</code></pre>
+				<a href="#todo" id="todo" style="color: inherit; text-decoration: none;">
+					<h2>TODO</h2>
 				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { createPaymentRequestData } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;epaybg-node-utils&#x27;</span>);
-
-<span class="hljs-keyword">const</span> secret = <span class="hljs-string">&#x27;epaybg-secret&#x27;</span>;
-<span class="hljs-keyword">const</span> data = {
-  <span class="hljs-attr">min</span>: <span class="hljs-string">&#x27;some-merchant-id&#x27;</span>,
-  <span class="hljs-attr">amount</span>: <span class="hljs-string">&#x27;32.30&#x27;</span>,
-  <span class="hljs-attr">exp_time</span>: <span class="hljs-string">&#x27;201902011230&#x27;</span>,
-  <span class="hljs-attr">currency</span>: <span class="hljs-string">&#x27;BGN&#x27;</span>,
-  <span class="hljs-attr">invoice</span>: <span class="hljs-string">&#x27;0001&#x27;</span>,
-};
-
-createPaymentRequestData(data, secret);</code></pre>
-				<a href="#validate-a-message" id="validate-a-message" style="color: inherit; text-decoration: none;">
-					<h2>Validate a message</h2>
-				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> {validate} = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;epaybg-node-utils&#x27;</span>);
-
-<span class="hljs-keyword">const</span> message = {
-  <span class="hljs-attr">encoded</span>: <span class="hljs-string">&quot;SU5WT0lDRT0xMTpTVEFUVVM9UEFJRDpQQVlfVElNRT0yMDE4MDYwMjEyMzA6U1RBTj0xMjM0NTY6QkNPREU9MTIzNDU2CgogICAgICAgIElOVk9JQ0U9MTI6U1RBVFVTPURFTklFRAoKICAgICAgICBJTlZPSUNFPTEzOlNUQVRVUz1FWFBJUkVE&quot;</span>,
-  <span class="hljs-attr">checksum</span>: <span class="hljs-string">&quot;16b98ed563cafb2fc5b60d8d8f44e8c2e7cf66c9&quot;</span>
-}
-
-validate(message);</code></pre>
-				<a href="#parse-a-payment-status-message" id="parse-a-payment-status-message" style="color: inherit; text-decoration: none;">
-					<h2>Parse a payment status message</h2>
-				</a>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { parseMessage } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;epaybg-node-utils&#x27;</span>);
-
-<span class="hljs-comment">// Data encoded in message.encoded</span>
-<span class="hljs-comment">//`INVOICE=11:STATUS=PAID:PAY_TIME=201806021230:STAN=123456:BCODE=123456\n</span>
-<span class="hljs-comment">//INVOICE=12:STATUS=DENIED\n</span>
-<span class="hljs-comment">//INVOICE=13:STATUS=EXPIRED`</span>
-
-<span class="hljs-keyword">const</span> message = {
-  <span class="hljs-attr">encoded</span>: <span class="hljs-string">&quot;SU5WT0lDRT0xMTpTVEFUVVM9UEFJRDpQQVlfVElNRT0yMDE4MDYwMjEyMzA6U1RBTj0xMjM0NTY6QkNPREU9MTIzNDU2CgogICAgICAgIElOVk9JQ0U9MTI6U1RBVFVTPURFTklFRAoKICAgICAgICBJTlZPSUNFPTEzOlNUQVRVUz1FWFBJUkVE&quot;</span>,
-  <span class="hljs-attr">checksum</span>: <span class="hljs-string">&quot;16b98ed563cafb2fc5b60d8d8f44e8c2e7cf66c9&quot;</span>
-}
-
-parseMessage(message);</code></pre>
+				<p>add docs.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
