@@ -138,6 +138,15 @@ describe('Borica', () => {
     expect(borica).toHaveProperty('gatewayUrl', config.gatewayUrl);
   });
 
+  it('should use default language and protocol if not specified', () => {
+    const _config = createConfigFixture()
+    const {protocolVersion, languageCode, ...nodefaultsConfig} = _config
+
+    const _borica = new Borica(nodefaultsConfig)
+    expect(_borica).toHaveProperty('languageCode', "BG");
+    expect(_borica).toHaveProperty('protocolVersion', "1.0");
+  });
+
   describe('getRegisterTransactionURL()', () => {
     it('should return a url', () => {
       const result = borica.getRegisterTransactionURL(data);
