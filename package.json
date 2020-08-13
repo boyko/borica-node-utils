@@ -1,6 +1,6 @@
 {
   "name": "borica-node-utils",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Node utilities for communication with the BORICA payment gateway.",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
