@@ -205,25 +205,5 @@ describe('Borica', () => {
       const result = borica.parseResponse(modifiedResponse);
       expect(result).toEqual(null);
     });
-    it("should parse a real message", () => {
-      const msg =
-        "MTAyMDIwMDgxMjIyMTYxODAwMDAwMDAwMDMyNTYyMTYxNjg4MDAwMDA3MjQwNCAgICAgMDAxLjCAbDj6BB9jHLG5g2AzTahJtqlnr0Jq26hOuP5b0uCXP7562DMp4fshq7HR145BeVP8wMdOcPUSoxETvSAnMEIObd820X1LCDPQwiJcAyQNuwMKUVk3Imu4AnajXc/C6lk/H1pOTLKBIkteLPaaUCeZFaLRRz/sPkbd67dY0mIKAg==";
-      const _config = createConfigFixture({
-        publicKey:
-          "-----BEGIN CERTIFICATE-----\nMIIEPjCCAyagAwIBAgIFAIETPncwDQYJKoZIhvcNAQELBQAwgYExCzAJBgNVBAYT\nAkJHMQ4wDAYDVQQIEwVTb2ZpYTEOMAwGA1UEBxMFU29maWExEjAQBgNVBAoTCUJP\nUklDQSBBRDEdMBsGA1UECxMUSW5mb3JtYXRpb24gU2VjdXJpdHkxHzAdBgNVBAMT\nFjNEIFNlY3VyZSBDQSBURVNUIDIwMTgwHhcNMTgwNTEwMTE1MjAwWhcNMjMwNTEw\nMTE1MjAwWjB2MQswCQYDVQQGEwJCRzEOMAwGA1UECBMFU29maWExDjAMBgNVBAcT\nBVNvZmlhMRIwEAYDVQQKEwlCb3JpY2EgQUQxCzAJBgNVBAsTAklUMSYwJAYDVQQD\nEx0zRFMgUGF5bWVudCBHYXRld2F5IFRFU1QgMjAxODCBnzANBgkqhkiG9w0BAQEF\nAAOBjQAwgYkCgYEA1jQfMh/I9lMtSrzpKXpjN8HKzTTzLGQk51K/pHjc5E0Mc0+o\nXVA4jRU+m8mGm1uf5QG0KCduV58eAAHZCOPmc6rTlBedxc67N87Fet3y776jsosq\nvNHHO7aPFppz53bq7hFXAdlRJeuiozeQ9JO/WKyE8mCTYZmq6RSVOyYv1ZkCAwEA\nAaOCAUkwggFFMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFN0KMCcvMiCn/X9yoUif\nqUqJgTzlMIGYBgNVHSMEgZAwgY2AFDLa4X6v1PDo/5JwYAgbHbUDWVROoW6kbDBq\nMQswCQYDVQQGEwJCRzEOMAwGA1UEBxMFU29maWExFDASBgNVBAoTC0JPUklDQSBM\ndGQuMRwwGgYDVQQLExNTZWN1cml0eSBEZXBhcnRtZW50MRcwFQYDVQQDEw5CT1JJ\nQ0EgUm9vdCBDQYIFAIETPnUwCwYDVR0PBAQDAgP4MDsGA1UdJQQ0MDIGCCsGAQUF\nBwMBBggrBgEFBQcDAgYIKwYBBQUHAwMGCCsGAQUFBwMEBggrBgEFBQcDCDARBglg\nhkgBhvhCAQEEBAMCBeAwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTAN\nBgkqhkiG9w0BAQsFAAOCAQEALJ6AyTnSuk2KkZJFLKtyGpXMVuWhqyX1ZIZeDGLd\nEQIN8crl35xm1gUk/cg6+23/mKSKDmhK3NJyCxjU2wXaFyPdQy4x0ix2BIbHbZFa\nuUZfTmfKPXJE+QEviEuUVpa5hQLCoDAxjVoVKAawPC6ktg8CE4T1u6yXtRTwDLuf\nsDeL1l7A+rB5n1JlCRmxdJ/AMM7xQoII9dK8E1NtnEcCEJIjtjojJUgzNPhxab3S\nitBTEmrWYpxmD50yCKye20Rc/yLBq1eK4CkEdpQNpPyCsg9svwKP4NTQEep8WcFc\nKABmi5In+PLEtMKdxQTcQhwrCtJB6JOht7+Kn7qdExey0w==\n-----END CERTIFICATE-----",
-      });
-      const _borica = new Borica(_config);
-      const result = _borica.parseResponse(msg);
-      expect(result).toEqual({
-        amount: 325,
-        isValid: true,
-        orderId: "0000072404",
-        protocolVersion: "1.0",
-        responseCode: "00",
-        terminalId: "62161688",
-        transactionCode: "10",
-        transactionTime: "20200812221618",
-      });
-    });
   });
 });
