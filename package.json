@@ -28,7 +28,6 @@
     "cov": "run-s build test:unit cov:html && opn coverage/index.html -- firefox",
     "cov:html": "nyc report --reporter=html",
     "cov:send": "nyc report --reporter=lcov > coverage.lcov && codecov",
-    "cov:check": "nyc report && nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "rm -rf ./coverage && jest -u --coverage",
     "doc": "run-s doc:html && opn build/docs/index.html",
     "doc:html": "typedoc src/ --exclude **/*.test.ts --target ES6 --mode file --out build/docs",
@@ -37,7 +36,7 @@
     "version": "standard-version",
     "reset": "git clean -dfx && git reset --hard && npm i",
     "clean": "trash build test",
-    "all": "run-s reset test cov:check doc:html",
+    "all": "run-s reset test doc:html",
     "prepare-release": "run-s all version doc:publish"
   },
   "scripts-info": {
