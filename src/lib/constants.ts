@@ -25,6 +25,9 @@ export type BoricaResponseType =
   | '98'
   | '99'
 
+export const ORDER_FIELD_LENGTH = 15
+export const DESCRIPTION_FIELD_LENGTH = 125
+
 export interface BoricaTransactionCodes {
   AUTHORIZATION: '10',
   PROFIT_PAYOUT: '11',
@@ -126,8 +129,4 @@ export interface BoricaResponseData {
   orderId: string;
   responseCode: string;
   protocolVersion: string;
-}
-
-export interface BoricaValidatedResponseData extends BoricaResponseData {
-  isValid: boolean;
 }
