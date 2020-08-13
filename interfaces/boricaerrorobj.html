@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BoricaTransactionUrls | borica-node-utils</title>
+	<title>BoricaErrorObj | borica-node-utils</title>
 	<meta name="description" content="Documentation for borica-node-utils">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="boricatransactionurls.html">BoricaTransactionUrls</a>
+					<a href="boricaerrorobj.html">BoricaErrorObj</a>
 				</li>
 			</ul>
-			<h1>Interface BoricaTransactionUrls</h1>
+			<h1>Interface BoricaErrorObj</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">BoricaTransactionUrls</span>
+						<span class="target">BoricaErrorObj</span>
 					</li>
 				</ul>
 			</section>
@@ -81,9 +81,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="boricatransactionurls.html#manage" class="tsd-kind-icon">MANAGE</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="boricatransactionurls.html#register" class="tsd-kind-icon">REGISTER</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="boricatransactionurls.html#status" class="tsd-kind-icon">STATUS</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="boricaerrorobj.html#code" class="tsd-kind-icon">code</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="boricaerrorobj.html#msg" class="tsd-kind-icon">msg</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,32 +91,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="manage" class="tsd-anchor"></a>
-					<h3>MANAGE</h3>
-					<div class="tsd-signature tsd-kind-icon">MANAGE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"manageTransaction"</span></div>
+					<a name="code" class="tsd-anchor"></a>
+					<h3>code</h3>
+					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/fc31cf7/src/lib/constants.ts#L58">lib/constants.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/fc31cf7/src/lib/BoricaResponse.ts#L54">lib/BoricaResponse.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="register" class="tsd-anchor"></a>
-					<h3>REGISTER</h3>
-					<div class="tsd-signature tsd-kind-icon">REGISTER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"registerTransaction"</span></div>
+					<a name="msg" class="tsd-anchor"></a>
+					<h3>msg</h3>
+					<div class="tsd-signature tsd-kind-icon">msg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/fc31cf7/src/lib/constants.ts#L59">lib/constants.ts:59</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="status" class="tsd-anchor"></a>
-					<h3>STATUS</h3>
-					<div class="tsd-signature tsd-kind-icon">STATUS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"transactionStatusReport"</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/fc31cf7/src/lib/constants.ts#L57">lib/constants.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/fc31cf7/src/lib/BoricaResponse.ts#L55">lib/BoricaResponse.ts:55</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -142,9 +131,21 @@
 					<li class=" tsd-kind-interface">
 						<a href="boricaconfig.html" class="tsd-kind-icon">Borica<wbr>Config</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="boricaerrorobj.html" class="tsd-kind-icon">Borica<wbr>Error<wbr>Obj</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="boricaerrorobj.html#code" class="tsd-kind-icon">code</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="boricaerrorobj.html#msg" class="tsd-kind-icon">msg</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="boricamessagedata.html" class="tsd-kind-icon">Borica<wbr>Message<wbr>Data</a>
 					</li>
@@ -157,24 +158,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="boricatransactioncodes.html" class="tsd-kind-icon">Borica<wbr>Transaction<wbr>Codes</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="boricatransactionurls.html" class="tsd-kind-icon">Borica<wbr>Transaction<wbr>Urls</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="boricatransactionurls.html#manage" class="tsd-kind-icon">MANAGE</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="boricatransactionurls.html#register" class="tsd-kind-icon">REGISTER</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="boricatransactionurls.html#status" class="tsd-kind-icon">STATUS</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#boricalanguagetype" class="tsd-kind-icon">Borica<wbr>Language<wbr>Type</a>
 					</li>
