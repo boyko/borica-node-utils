@@ -88,7 +88,7 @@ export default class BoricaReponse {
     );
   }
 
-  isDuplicate() {
+  isDuplicate(): boolean {
     return ["85", "86"].indexOf(this.data.responseCode) > -1;
   }
 
