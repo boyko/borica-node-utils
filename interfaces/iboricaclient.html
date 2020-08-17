@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BoricaMessageData | borica-node-utils</title>
+	<title>IBoricaClient | borica-node-utils</title>
 	<meta name="description" content="Documentation for borica-node-utils">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="boricamessagedata.html">BoricaMessageData</a>
+					<a href="iboricaclient.html">IBoricaClient</a>
 				</li>
 			</ul>
-			<h1>Interface BoricaMessageData</h1>
+			<h1>Interface IBoricaClient</h1>
 		</div>
 	</div>
 </header>
@@ -70,8 +70,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">BoricaMessageData</span>
+						<span class="target">IBoricaClient</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/boricaaxiosclient.html" class="tsd-signature-type">BoricaAxiosClient</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -81,12 +87,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="boricamessagedata.html#amount" class="tsd-kind-icon">amount</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="boricamessagedata.html#currency" class="tsd-kind-icon">currency</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="boricamessagedata.html#date" class="tsd-kind-icon">date</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="boricamessagedata.html#description" class="tsd-kind-icon">description</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="boricamessagedata.html#language" class="tsd-kind-icon">language</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="boricamessagedata.html#orderid" class="tsd-kind-icon">order<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iboricaclient.html#agent" class="tsd-kind-icon">agent</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iboricaclient.html#clientcert" class="tsd-kind-icon">client<wbr>Cert</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iboricaclient.html#clientkey" class="tsd-kind-icon">client<wbr>Key</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,62 +98,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="amount" class="tsd-anchor"></a>
-					<h3>amount</h3>
-					<div class="tsd-signature tsd-kind-icon">amount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="agent" class="tsd-anchor"></a>
+					<h3>agent</h3>
+					<div class="tsd-signature tsd-kind-icon">agent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AxiosInstance</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/3933dc4/src/lib/Borica.ts#L25">lib/Borica.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/3933dc4/src/lib/BoricaAxiosClient.ts#L7">lib/BoricaAxiosClient.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="currency" class="tsd-anchor"></a>
-					<h3>currency</h3>
-					<div class="tsd-signature tsd-kind-icon">currency<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="clientcert" class="tsd-anchor"></a>
+					<h3>client<wbr>Cert</h3>
+					<div class="tsd-signature tsd-kind-icon">client<wbr>Cert<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/3933dc4/src/lib/Borica.ts#L27">lib/Borica.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/3933dc4/src/lib/BoricaAxiosClient.ts#L6">lib/BoricaAxiosClient.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="date" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> date</h3>
-					<div class="tsd-signature tsd-kind-icon">date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
+					<a name="clientkey" class="tsd-anchor"></a>
+					<h3>client<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">client<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/3933dc4/src/lib/Borica.ts#L29">lib/Borica.ts:29</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="description" class="tsd-anchor"></a>
-					<h3>description</h3>
-					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/3933dc4/src/lib/Borica.ts#L26">lib/Borica.ts:26</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="language" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> language</h3>
-					<div class="tsd-signature tsd-kind-icon">language<span class="tsd-signature-symbol">:</span> <a href="../globals.html#boricalanguagetype" class="tsd-signature-type">BoricaLanguageType</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/3933dc4/src/lib/Borica.ts#L28">lib/Borica.ts:28</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="orderid" class="tsd-anchor"></a>
-					<h3>order<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">order<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/3933dc4/src/lib/Borica.ts#L24">lib/Borica.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/boyko/borica-node-utils/blob/3933dc4/src/lib/BoricaAxiosClient.ts#L5">lib/BoricaAxiosClient.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -184,33 +157,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="boricaerrorobj.html" class="tsd-kind-icon">Borica<wbr>Error<wbr>Obj</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="boricamessagedata.html" class="tsd-kind-icon">Borica<wbr>Message<wbr>Data</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="boricamessagedata.html#amount" class="tsd-kind-icon">amount</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="boricamessagedata.html#currency" class="tsd-kind-icon">currency</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="boricamessagedata.html#date" class="tsd-kind-icon">date</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="boricamessagedata.html#description" class="tsd-kind-icon">description</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="boricamessagedata.html#language" class="tsd-kind-icon">language</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="boricamessagedata.html#orderid" class="tsd-kind-icon">order<wbr>Id</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="boricaresponsecodes.html" class="tsd-kind-icon">Borica<wbr>Response<wbr>Codes</a>
 					</li>
@@ -226,9 +175,24 @@
 					<li class=" tsd-kind-interface">
 						<a href="boricaurlsettings.html" class="tsd-kind-icon">Borica<wbr>Url<wbr>Settings</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="iboricaclient.html" class="tsd-kind-icon">IBorica<wbr>Client</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iboricaclient.html#agent" class="tsd-kind-icon">agent</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iboricaclient.html#clientcert" class="tsd-kind-icon">client<wbr>Cert</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iboricaclient.html#clientkey" class="tsd-kind-icon">client<wbr>Key</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#boricalanguagetype" class="tsd-kind-icon">Borica<wbr>Language<wbr>Type</a>
 					</li>
