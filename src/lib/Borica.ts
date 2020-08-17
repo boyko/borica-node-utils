@@ -1,6 +1,7 @@
 import crypto from "crypto";
 import {
-  BORICA_LANGUAGE_DEFAULT, BORICA_PROTOCOL_VERSION_DEFAULT,
+  BORICA_LANGUAGE_DEFAULT,
+  BORICA_PROTOCOL_VERSION_DEFAULT,
   BORICA_TRANSACTION_CODES,
   BORICA_TRANSACTION_URLS,
   ORDER_FIELD_LENGTH,
@@ -8,9 +9,16 @@ import {
   BoricaLanguageType,
   BoricaProtocolVersionType,
   BoricaResponseData,
-  BORICA_LANGUAGES, BORICA_PROTOCOL_VERSIONS
+  BORICA_LANGUAGES,
+  BORICA_PROTOCOL_VERSIONS,
 } from "./constants";
 import { formatDateYMDHS, pad } from "./utils";
+import BoricaRequest from "./BoricaRequest";
+
+export interface BoricaUrlSettings {
+  url: string;
+  params: { eBorica: string };
+}
 
 export interface BoricaMessageData {
   orderId: string;
@@ -18,7 +26,7 @@ export interface BoricaMessageData {
   description: string;
   currency: string;
   language?: BoricaLanguageType;
-  date?: Date
+  date?: Date;
 }
 
 export interface BoricaConfig {
@@ -27,7 +35,7 @@ export interface BoricaConfig {
   terminalId: string;
   gatewayUrl: string;
   protocolVersion?: BoricaProtocolVersionType;
-  languageCode?: BoricaLanguageType
+  languageCode?: BoricaLanguageType;
 }
 
 export default class Borica implements BoricaConfig {
@@ -38,59 +46,110 @@ export default class Borica implements BoricaConfig {
   languageCode: BoricaLanguageType;
   gatewayUrl: string;
 
-  constructor({ terminalId, privateKey, publicKey, protocolVersion = BORICA_PROTOCOL_VERSION_DEFAULT, languageCode = BORICA_LANGUAGE_DEFAULT, gatewayUrl }: BoricaConfig) {
+  constructor({
+    terminalId,
+    privateKey,
+    publicKey,
+    protocolVersion = BORICA_PROTOCOL_VERSION_DEFAULT,
+    languageCode = BORICA_LANGUAGE_DEFAULT,
+    gatewayUrl,
+  }: BoricaConfig) {
     this.terminalId = terminalId;
     this.privateKey = privateKey;
     this.publicKey = publicKey;
     if (BORICA_PROTOCOL_VERSIONS.indexOf(protocolVersion) === -1) {
-      throw new Error(`Invalid protocol version: ${languageCode}. Should be one of ${BORICA_PROTOCOL_VERSIONS.join(", ")}`);
+      throw new Error(
+        `Invalid protocol version: ${languageCode}. Should be one of ${BORICA_PROTOCOL_VERSIONS.join(
+          ", "
+        )}`
+      );
     }
     this.protocolVersion = protocolVersion;
     if (BORICA_LANGUAGES.indexOf(languageCode) === -1) {
-      throw new Error(`Invalid language code: ${languageCode}. Should be one of ${BORICA_LANGUAGES.join(", ")}`);
+      throw new Error(
+        `Invalid language code: ${languageCode}. Should be one of ${BORICA_LANGUAGES.join(
+          ", "
+        )}`
+      );
     }
     this.languageCode = languageCode;
     this.gatewayUrl = gatewayUrl;
   }
 
+  getRegisterTransactionPayload(data: BoricaMessageData): BoricaRequest {
+    const message = this._getBaseMessage(
+      BORICA_TRANSACTION_CODES.AUTHORIZATION,
+      data
+    );
+    return this._generateRequest(message, BORICA_TRANSACTION_URLS.REGISTER);
+  }
+
   getRegisterTransactionURL(data: BoricaMessageData): string {
-    const message = this._getBaseMessage(BORICA_TRANSACTION_CODES.AUTHORIZATION, data);
-    return this._generateURL(message, BORICA_TRANSACTION_URLS.REGISTER);
+    return this.getRegisterTransactionPayload(data).toURL();
+  }
+
+  getStatusRequest(data: BoricaMessageData): BoricaRequest {
+    const message = this._getBaseMessage(
+      BORICA_TRANSACTION_CODES.AUTHORIZATION,
+      data
+    );
+    return this._generateRequest(message, BORICA_TRANSACTION_URLS.STATUS);
+  }
+
+  getTransactionStatusBaseURL(): string {
+    return this._buildURL(BORICA_TRANSACTION_URLS.STATUS);
   }
 
   getStatusURL(data: BoricaMessageData): string {
-    const message = this._getBaseMessage(BORICA_TRANSACTION_CODES.AUTHORIZATION, data);
-    return this._generateURL(message, BORICA_TRANSACTION_URLS.STATUS);
+    return this.getStatusRequest(data).toURL();
   }
 
-  getRegisterDelayedRequestURL(data: BoricaMessageData): string {
-    const message = this._getBaseMessage(BORICA_TRANSACTION_CODES.AUTHORIZATION_DELAYED_REQUEST, data);
-    return this._generateURL(message, BORICA_TRANSACTION_URLS.REGISTER);
+  getRegisterDelayedRequestPayload(data: BoricaMessageData): BoricaRequest {
+    const message = this._getBaseMessage(
+      BORICA_TRANSACTION_CODES.AUTHORIZATION_DELAYED_REQUEST,
+      data
+    );
+    return this._generateRequest(message, BORICA_TRANSACTION_URLS.REGISTER);
   }
 
-  getCompleteDelayedRequestURL(data: BoricaMessageData): string {
-    const message = this._getBaseMessage(BORICA_TRANSACTION_CODES.AUTHORIZATION_DELAYED_COMPLETE, data);
-    return this._generateURL(message, BORICA_TRANSACTION_URLS.MANAGE);
+  getCompleteDelayedRequestURL(data: BoricaMessageData): BoricaRequest {
+    const message = this._getBaseMessage(
+      BORICA_TRANSACTION_CODES.AUTHORIZATION_DELAYED_COMPLETE,
+      data
+    );
+    return this._generateRequest(message, BORICA_TRANSACTION_URLS.MANAGE);
   }
 
-  getReverseDelayedRequestURL(data: BoricaMessageData): string {
-    const message = this._getBaseMessage(BORICA_TRANSACTION_CODES.REVERSAL_DELAYED_AUTHORIZATION, data);
-    return this._generateURL(message, BORICA_TRANSACTION_URLS.MANAGE);
+  getReverseDelayedRequestURL(data: BoricaMessageData): BoricaRequest {
+    const message = this._getBaseMessage(
+      BORICA_TRANSACTION_CODES.REVERSAL_DELAYED_AUTHORIZATION,
+      data
+    );
+    return this._generateRequest(message, BORICA_TRANSACTION_URLS.MANAGE);
   }
 
-  getReverseURL(data: BoricaMessageData): string {
-    const message = this._getBaseMessage(BORICA_TRANSACTION_CODES.REVERSAL, data);
-    return this._generateURL(message, BORICA_TRANSACTION_URLS.MANAGE);
+  getReverseURL(data: BoricaMessageData): BoricaRequest {
+    const message = this._getBaseMessage(
+      BORICA_TRANSACTION_CODES.REVERSAL,
+      data
+    );
+    return this._generateRequest(message, BORICA_TRANSACTION_URLS.MANAGE);
   }
 
-  getPayProfitURL(data: BoricaMessageData): string {
-    const message = this._getBaseMessage(BORICA_TRANSACTION_CODES.PROFIT_PAYOUT, data);
-    return this._generateURL(message, BORICA_TRANSACTION_URLS.REGISTER);
+  getPayProfitURL(data: BoricaMessageData): BoricaRequest {
+    const message = this._getBaseMessage(
+      BORICA_TRANSACTION_CODES.PROFIT_PAYOUT,
+      data
+    );
+    return this._generateRequest(message, BORICA_TRANSACTION_URLS.REGISTER);
   }
 
-  getPayedProfitReversalURL(data: BoricaMessageData): string {
-    const message = this._getBaseMessage(BORICA_TRANSACTION_CODES.REVERSAL_PROFIT, data);
-    return this._generateURL(message, BORICA_TRANSACTION_URLS.MANAGE);
+  getPayedProfitReversalPayload(data: BoricaMessageData): BoricaRequest {
+    const message = this._getBaseMessage(
+      BORICA_TRANSACTION_CODES.REVERSAL_PROFIT,
+      data
+    );
+    return this._generateRequest(message, BORICA_TRANSACTION_URLS.MANAGE);
   }
 
   _getBaseMessage(messageType: string, data: BoricaMessageData): string {
@@ -108,22 +167,30 @@ export default class Borica implements BoricaConfig {
 
   _processDescription(desc: string): string {
     if (desc.length > DESCRIPTION_FIELD_LENGTH) {
-      throw new Error(`Invalid description field: ${desc}. Description field should be shorter than ${DESCRIPTION_FIELD_LENGTH} characters.`);
+      throw new Error(
+        `Invalid description field: ${desc}. Description field should be shorter than ${DESCRIPTION_FIELD_LENGTH} characters.`
+      );
     }
     return pad(desc, 125, " ", "right");
   }
 
   _processOrderId(orderId: string): string {
     if (orderId.length > ORDER_FIELD_LENGTH) {
-      throw new Error(`Invalid orderId: ${orderId}. Order field should be shorter than ${ORDER_FIELD_LENGTH} characters.`);
+      throw new Error(
+        `Invalid orderId: ${orderId}. Order field should be shorter than ${ORDER_FIELD_LENGTH} characters.`
+      );
     }
     return pad(orderId, 15, " ", "right");
   }
 
-  _generateURL(message: string, type: string): string {
+  _buildURL(type: string): string {
+    return `${this.gatewayUrl}${type}`;
+  }
+
+  _generateRequest(message: string, type: string): BoricaRequest {
     const signedMessage = this._signMessage(message);
     const finalMessage = encodeURIComponent(signedMessage.toString("base64"));
-    return `${this.gatewayUrl}${type}?eBorica=${finalMessage}`;
+    return new BoricaRequest(this._buildURL(type), finalMessage);
   }
 
   _signMessage(message: string): Buffer {
@@ -137,7 +204,9 @@ export default class Borica implements BoricaConfig {
 
   _processTransactionAmount(value: number): string {
     if (!Number.isInteger(value)) {
-      throw new Error(`Invalid amount: ${value}. Amount should be an integer value (cents, stotinki, etc.).`)
+      throw new Error(
+        `Invalid amount: ${value}. Amount should be an integer value (cents, stotinki, etc.).`
+      );
     }
     return pad(value, 12);
   }
@@ -167,7 +236,7 @@ export default class Borica implements BoricaConfig {
       terminalId: msg.substring(28, 36),
       orderId: msg.substring(36, 51).trim(),
       responseCode: msg.substring(51, 53),
-      protocolVersion: msg.substring(53, 56)
+      protocolVersion: msg.substring(53, 56),
     };
   }
 }

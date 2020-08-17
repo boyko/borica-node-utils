@@ -80,6 +80,9 @@
     "typedoc": "^0.18.0",
     "typescript": "^3.9.7"
   },
+  "peerDependencies": {
+    "axios": "^0.19.2"
+  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"

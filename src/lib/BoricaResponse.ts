@@ -66,7 +66,7 @@ export default class BoricaReponse {
     return this.data.responseCode === BORICA_RESPONSE_CODES.SUCCESS;
   }
 
-  getError(): null | object {
+  getError(): null | BoricaErrorObj {
     return this.isSuccessful() ? null : this._getErrorObj();
   }
 
@@ -83,24 +83,35 @@ export default class BoricaReponse {
 
   isDelayedAuthorizationRequest(): boolean {
     return (
-      this.data.responseCode ===
+      this.data.transactionCode ===
       BORICA_TRANSACTION_CODES.AUTHORIZATION_DELAYED_REQUEST
     );
   }
 
+  isDuplicate() {
+    return ["85", "86"].indexOf(this.data.responseCode) > -1;
+  }
+
   isDelayedAuthorizationRequestComplete(): boolean {
     return (
-      this.data.responseCode ===
+      this.data.transactionCode ===
       BORICA_TRANSACTION_CODES.AUTHORIZATION_DELAYED_COMPLETE
     );
   }
 
   isRegisterTransaction(): boolean {
-    return this.data.responseCode === BORICA_TRANSACTION_CODES.AUTHORIZATION;
+    return this.data.transactionCode === BORICA_TRANSACTION_CODES.AUTHORIZATION;
+  }
+
+  isDelayedAuthorizationReversal(): boolean {
+    return (
+      this.data.transactionCode ===
+      BORICA_TRANSACTION_CODES.REVERSAL_DELAYED_AUTHORIZATION
+    );
   }
 
   isReversal(): boolean {
-    return this.data.responseCode === BORICA_TRANSACTION_CODES.REVERSAL;
+    return this.data.transactionCode === BORICA_TRANSACTION_CODES.REVERSAL;
   }
 
   toJSON(): BoricaResponseData {
