@@ -7,11 +7,11 @@ export default class BoricaRequest {
     this.msg = eBorica;
   }
 
-  toURL() {
+  toURL(): string {
     return `${this.url}?eBorica=${this.msg}`;
   }
 
-  toAxiosConfig() {
+  toAxiosConfig(): {url: string, params: {eBorica: string}} {
     return {
       url: this.url,
       params: {
