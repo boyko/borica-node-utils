@@ -5,15 +5,12 @@
     "tslint-immutable"
   ],
   "rules": {
-    "interface-name": [
-      true,
-      "never-prefix"
-    ],
+    "interface-name": false,
     // TODO: allow devDependencies only in **/*.spec.ts files:
     // waiting on https://github.com/palantir/tslint/pull/3708
     "no-implicit-dependencies": [
       true,
-      "dev"
+      "optional"
     ],
     /* tslint-immutable rules */
     // Recommended built-in rules

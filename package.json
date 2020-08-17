@@ -34,7 +34,7 @@
     "doc:json": "typedoc src/ --exclude **/*.test.ts --target ES6 --mode file --json build/docs/typedoc.json",
     "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d build/docs",
     "version": "standard-version",
-    "reset": "git clean -dfx && git reset --hard && npm i",
+    "reset": "git clean -dfx && git reset --hard && yarn install && yarn install --optional",
     "clean": "trash build test",
     "all": "run-s reset test doc:html",
     "prepare-release": "run-s all version doc:publish"
@@ -80,7 +80,7 @@
     "typedoc": "^0.18.0",
     "typescript": "^3.9.7"
   },
-  "peerDependencies": {
+  "optionalDependencies": {
     "axios": "^0.19.2"
   },
   "config": {
