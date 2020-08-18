@@ -95,7 +95,7 @@ export default class Borica implements BoricaConfig {
     return this._buildURL(BORICA_TRANSACTION_URLS.STATUS);
   }
 
-  getStatusURL(data: BoricaMessageData): string {
+  getStatusPayload(data: BoricaMessageData): string {
     return this.getStatusRequest(data).toURL();
   }
 
