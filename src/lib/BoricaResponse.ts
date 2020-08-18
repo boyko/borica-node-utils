@@ -11,7 +11,7 @@ export const BORICA_ERROR_CODES_MAP: { [k: string]: string } = {
     "The acquirer should instruct the merchant to retain the card. No specific reason given.",
   "05": "Transaction declined. No specific reason given",
   "06":
-    "Indicates an unspecified error in a previousmessage. When used in a 0420 reversal,indicates that the reason for the reversal wasdue to an error in a previous message",
+    "Indicates an unspecified error in a previous message. When used in a 0420 reversal,indicates that the reason for the reversal wasdue to an error in a previous message",
   "13": "Invalid amount",
   "14": "Invalid card number (no such number)",
   "15": "Unable to route at IEM",
@@ -43,7 +43,7 @@ export const BORICA_ERROR_CODES_MAP: { [k: string]: string } = {
   "93": "Unsuccessful 3D authentication from ACS",
   "94": "Discarded transaction",
   "95": "Invalid signature of merchant",
-  "96": "Techinical error when processing the transaction",
+  "96": "Technical error when processing the transaction",
   "97": "Declined by fraud check",
   "98":
     "Executing check of transaction status. For the send BOReq there is no registered BOResp inside of Borica",

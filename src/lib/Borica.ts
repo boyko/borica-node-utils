@@ -15,11 +15,6 @@ import {
 import { formatDateYMDHS, pad } from "./utils";
 import BoricaRequest from "./BoricaRequest";
 
-export interface BoricaUrlSettings {
-  url: string;
-  params: { eBorica: string };
-}
-
 export interface BoricaMessageData {
   orderId: string;
   amount: number;
@@ -152,17 +147,22 @@ export default class Borica implements BoricaConfig {
     return this._generateRequest(message, BORICA_TRANSACTION_URLS.MANAGE);
   }
 
-  _getBaseMessage(messageType: string, data: BoricaMessageData): string {
-    return (
-      messageType +
-      formatDateYMDHS(data.date || new Date()) +
-      this._processTransactionAmount(data.amount) +
-      this.terminalId +
-      this._processOrderId(data.orderId) +
-      this._processDescription(data.description) +
-      this.languageCode +
-      this.protocolVersion
-    );
+  _getBaseMessage(type: string, data: BoricaMessageData): string {
+    const msg = [
+      type,
+      formatDateYMDHS(data.date || new Date()),
+      this._processTransactionAmount(data.amount),
+      this.terminalId,
+      this._processOrderId(data.orderId),
+      this._processDescription(data.description),
+      this.languageCode,
+      this.protocolVersion,
+      ]
+
+    if (this.protocolVersion === BORICA_PROTOCOL_VERSIONS[1]) {
+      msg.push(data.currency)
+    }
+    return msg.join("")
   }
 
   _processDescription(desc: string): string {
