@@ -10,7 +10,8 @@
     // waiting on https://github.com/palantir/tslint/pull/3708
     "no-implicit-dependencies": [
       true,
-      "optional"
+      "optional",
+      "dev"
     ],
     /* tslint-immutable rules */
     // Recommended built-in rules

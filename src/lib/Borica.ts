@@ -194,11 +194,15 @@ export default class Borica implements BoricaConfig {
   }
 
   _signMessage(message: string): Buffer {
-    const privateKey = this.privateKey;
+
     const sign = crypto.createSign("SHA1");
     sign.update(message);
     sign.end();
-    const signature = sign.sign(Buffer.from(privateKey));
+    // tslint:disable-next-line:no-console
+    console.log("Signing with private key")
+    // tslint:disable-next-line:no-console
+    console.log(this.privateKey)
+    const signature = sign.sign(Buffer.from(this.privateKey));
     return Buffer.concat([Buffer.from(message), Buffer.from(signature)]);
   }
 

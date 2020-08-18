@@ -10,3 +10,5 @@ coverage
 
 certificates
 /certificates_test/
+/tests/BOReqTest.key
+/tests/Test_BOReqTest_f.cer
